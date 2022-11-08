@@ -3,13 +3,11 @@ import json
 import requests
 
 from constants.global_constants import GlobalConstants
-from constants.environment_variables import ENV
 from discord_logger import log_error
 from tag_data import TagData
 from datetime import datetime
 from config import Config
 from typing import List
-from requests.auth import HTTPBasicAuth
 
 
 def _get_date() -> str:

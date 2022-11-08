@@ -1,7 +1,3 @@
-import json
-from constants.global_constants import GlobalConstants
-
-
 class TagData(dict):
     def __init__(self, source, date, tag):
         self.source = source
