@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "keyword-collector"
+version = "0.1.0"
+description = ""
+authors = ["JesseLeung97", "AgentKD6-37"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-dotenv = "^0.21.0"
+black = "^22.10.0"
+flake8 = "^5.0.4"
+isort = "^5.10.1"
+requests = "^2.28.1"
+discord-error-logger = {git = "git@github.com:JesseLeung97/discord-error-logger.git"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
