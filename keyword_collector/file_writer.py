@@ -40,6 +40,6 @@ class FileWriter:
                     indent=GlobalConstants.DEFAULT_JSON_INDENT,
                     sort_keys=True)
         except IOError as e:
-            log_error("[keyword_collector] An IO error occurred when opening the output JSON file.", stack_trace=f"{e}")
-            raise f"{e}"
+            log_error("An IO error occurred when opening the output JSON file.", f"{e}")
+            raise Exception(f"{e}")
         return

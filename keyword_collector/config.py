@@ -8,13 +8,13 @@ class Config:
     def __init__(self):
         env = find_dotenv()
         if env == '':
-            log_error("[keyword_collector] There was no .env file found in keyword-collector.  Execution halted.")
-            raise "No .env file found."
+            log_error("There was no .env file found in keyword_collector.  Execution halted.")
+            raise Exception("No .env file found.")
 
         if not load_dotenv(env):
-            log_error("[keyword_collector] There are no environment variables set in the .env file found in "
+            log_error("There are no environment variables set in the .env file found in "
                       "keyword_collector.  Execution halted.")
-            raise "There are no environment variables set in the .env file."
+            raise Exception("There are no environment variables set in the .env file.")
 
         self.g_news_api_key = getenv(ENV.G_NEWS_API_KEY)
         self.json_out_dir = getenv(ENV.JSON_OUT_DIR)

@@ -49,16 +49,17 @@ class DataFetcher:
         response = requests.get(f"{GlobalConstants.G_NEWS_HEADLINES_US}{self.config.g_news_api_key}")
         if response.status_code != GlobalConstants.HTTP_RESPONSE_OK:
             log_error(
-                error_message="[keyword_collector] There was an HTTP error when connecting to the Google News API.",
-                stack_trace=response.json())
-            raise "There was an HTTP error when connecting to the Google News API."
+                error_message="There was an HTTP error when connecting to the Google News API.",
+                stack_trace=json.dumps(response.json(), indent=GlobalConstants.DEFAULT_JSON_INDENT))
+            raise Exception("There was an HTTP error when connecting to the Google News API.")
 
         return response.json()
 
     def get_google_news_headlines(self) -> List[TagData]:
         data = self._get_google_news_headlines()
         if data is None:
-            raise "No data was returned from Google News."
+            log_error("No data was returned from Google News.")
+            raise Exception("No data was returned from Google News.")
 
         tag_data = _convert_google_news_to_tag_data(data)
 
@@ -69,16 +70,17 @@ class DataFetcher:
         response = requests.get(f"{GlobalConstants.TWITTER_HASHTAGS_US}", headers=headers)
         if response.status_code != GlobalConstants.HTTP_RESPONSE_OK:
             log_error(
-                error_message="[keyword_collector] There was an HTTP error when connecting to the Twitter API.",
-                stack_trace=response.json())
-            raise "There was an HTTP error when connecting to the Twitter API."
+                error_message="There was an HTTP error when connecting to the Twitter API.",
+                stack_trace=json.dumps(response.json(), indent=GlobalConstants.DEFAULT_JSON_INDENT))
+            raise Exception("There was an HTTP error when connecting to the Twitter API.")
 
         return response.json()
 
     def get_twitter_hashtags(self) -> List[TagData]:
         data = self._get_twitter_hashtags()
         if data is None:
-            raise "No data was returned from Twitter."
+            log_error("No data was returned from Twitter.")
+            raise Exception("No data was returned from Twitter.")
 
         tag_data = _convert_twitter_hashtags_to_tag_data(data)
 
